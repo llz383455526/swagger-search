@@ -1,0 +1,22 @@
+{
+  "background": {
+      "presistent": true,
+      "scripts": ["js/background.js" ]
+  },
+  "browser_action": {
+      "default_icon": "images/yaocaigou.png",
+      "default_title": "药师帮API中心"
+  
+  },
+  "description": "药师帮API中心",
+  "icons": {
+      "128": "images/yaocaigou.png",
+      "16": "images/yaocaigou.png",
+      "48": "images/yaocaigou.png"
+  },
+  "manifest_version": 2,
+  "name": "ysb api center",
+  "permissions": [ "notifications", "unlimitedStorage", "downloads", "storage", "contextMenus", "tabs", "*://test.ysbang.cn/*", "*://unpkg.com/*","webRequest", "webRequestBlocking"],
+  "version": "1.0.0",
+  "web_accessible_resources": [ "images/*" ]
+}
