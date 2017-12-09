@@ -1,3 +1,26 @@
+
+.history-wrapper {
+    display: none;
+    width: 60%;
+    border: 1px solid #e1e1e1;
+    margin: 10px auto;
+    text-align: left
+}
+
+.history-wrapper:hover{
+    box-shadow: 0 0 3px 5px #ededed;
+}
+
+.history-wrapper .title {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 5px;
+    display: inline-block;
+    color: #999;
+}
+
+.history-wrapper ul {
+    padding: 10px;
+}
 .history-tag {
     padding: 2px 10px;
     font-size: 14px;

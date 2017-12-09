@@ -2,19 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
+.logo-wrapper{
+
+}
+.logo-wrappe .logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
 .search {
-  margin-top: 10%;
-  width: 60%;
+  margin-top: 8%;
+  width: 40%;
 }
 
-.history {
-  margin-top: 20px;
-}
+
 .App-title {
   font-size: 1.5em;
 }

@@ -10,29 +10,36 @@ const Search = Input.Search;
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={searchResult:[]}
+    this.state={searchResult:[]};
+    setTimeout(() => {
+      this.searchApi("zhujie");
+    }, 500);
   }
   render() {
     return (
       <div className="App">
+        
         <Search
           placeholder="API名称/开发者姓名(pingyin)"
           className="search"
           onSearch={this.searchApi}
           size="large"
           type="primary"/>
-        <History className="history" onHistorySelect={this.searchApi}></History>
-        <ApiList dataList={this.state.searchResult}></ApiList>
+        <History onHistorySelect={this.searchApi}></History>
+        <ApiList className="list" dataList={this.state.searchResult}></ApiList>
 
       </div>
     );
   }
 
   searchApi = (key) => {
+
     this.setState({
       searchResult: apiCenter.searchApi(key.toLowerCase())
     })
   }
+
+  
 }
 
 export default App;

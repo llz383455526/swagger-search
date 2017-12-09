@@ -37,7 +37,9 @@ class History extends Component {
     }
     render() {
         return (
-            <ul className="history">
+            <div className="history-wrapper">
+            <span className="title">历史记录：</span>
+            <ul >
             {
                 this.state.historyList.map((item) => {
                     let colorIndex = this.getRandomIntInclusive(1, this.colors.length);
@@ -45,6 +47,7 @@ class History extends Component {
                 })
             }
             </ul>
+            </div>
         )
     };
 }

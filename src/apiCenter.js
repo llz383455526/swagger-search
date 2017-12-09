@@ -22,7 +22,7 @@ function projectApiAnalyze(data){
     }
 
     _projectApiInfo.description = data.info.description+data.info.title;
-    _projectApiInfo.projectApiPageUrl = data.host+data.basePath+"swagger-ui.html#!";
+    _projectApiInfo.projectApiPageUrl = data.host+data.basePath+"/swagger-ui.html#!";
 
     _.forEach(data.paths,(pathData,path)=>{
         let apiItem={
@@ -39,9 +39,9 @@ function projectApiAnalyze(data){
 
 
         const pathInfo = pathData[apiItem.method];
-        apiItem.author = pathInfo.tags[0] && pathInfo.tags[0].toLowerCase();      //api开发者信息
+        apiItem.author = pathInfo.tags[0] && pathInfo.tags[0];      //api开发者信息
     
-        apiItem.operationId = pathInfo.operationId.toLowerCase();
+        apiItem.operationId = pathInfo.operationId;
         apiItem.apiName = apiItem.operationId.replace(new RegExp("Using"+apiItem.method,"ig"),"")   //api 名称
         apiItem.summary = pathInfo.summary;     //api 功能描述
         _projectApiInfo.apiList.push(apiItem)
@@ -72,20 +72,26 @@ function collectApiInfo(projectUrls){
 
 
 function searchApi(searchKey){
-    let results=[];
+    let results={};
 
     allProjectApiList.forEach((projectApi)=>{
         projectApi.apiList.forEach((api)=>{
-            if(api.author.includes(searchKey) || api.operationId.includes(searchKey) ){
-                let findOne = api;
-                findOne.jumpUrl = projectApi.projectApiPageUrl+api.author+"/"+api.operationId;
-                console.dir(findOne);
-                results.push(findOne);
-            }
+            //1、搜索关键词分词
+            let cutkeys = searchKey.split("");
+            //2、关键词与作者和api名称匹配
+            cutkeys.forEach((cutkey)=>{
+                if(api.author.toLowerCase().includes(searchKey) || api.operationId.toLowerCase().includes(searchKey) ){
+                    let findOne = api;
+                    findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
+                    let hash = findOne.jumpUrl;
+                    !results[hash] && (results[hash] = findOne);
+                }
+            })
+            
         })
     })
 
-    return results;
+    return Object.values(results);
 
 }
 
