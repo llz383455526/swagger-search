@@ -77,10 +77,11 @@ function searchApi(searchKey){
     allProjectApiList.forEach((projectApi)=>{
         projectApi.apiList.forEach((api)=>{
             //1、搜索关键词分词
-            let cutkeys = searchKey.split("");
+            let cutkeys = searchKey.split(" ");
+        
             //2、关键词与作者和api名称匹配
             cutkeys.forEach((cutkey)=>{
-                if(api.author.toLowerCase().includes(searchKey) || api.operationId.toLowerCase().includes(searchKey) ){
+                if(api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
                     let findOne = api;
                     findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
                     let hash = findOne.jumpUrl;

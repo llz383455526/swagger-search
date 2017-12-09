@@ -11,20 +11,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={searchResult:[]};
-    setTimeout(() => {
-      this.searchApi("zhujie");
-    }, 500);
   }
   render() {
     return (
       <div className="App">
-        
+        <div className="search-wrapper">
         <Search
           placeholder="API名称/开发者姓名(pingyin)"
           className="search"
           onSearch={this.searchApi}
           size="large"
           type="primary"/>
+        </div>
+        
         <History onHistorySelect={this.searchApi}></History>
         <ApiList className="list" dataList={this.state.searchResult}></ApiList>
 

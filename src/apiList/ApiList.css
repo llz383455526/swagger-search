@@ -3,17 +3,4 @@
     width: 60%;
     margin: 0 auto;
 }
-.item-wrapper {
-    display: flex;
-    flex-flow: column;
-    background: red;
-}
 
-.item-wrapper .author {
-    margin: 0;
-    padding: 0;
-}
-
-.item-wrapper .footer {
-
-}

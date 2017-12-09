@@ -1,0 +1,63 @@
+.item-wrapper {
+    display: flex;
+    flex-flow: column;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px;
+    color: #333;
+}
+
+.item-wrapper:hover {
+    box-shadow: 0 0 2px 3px #e1e1e1;
+}
+
+.item-wrapper span {
+    display:   inline-block;
+}
+.item-wrapper .header {
+    margin-bottom: 5px;
+}
+
+.header .summary{
+    
+}
+
+.header .summary::before{
+    display: inline-block;
+    content:"接口描述：";
+    color:#999;
+}
+.header .author {
+    padding: 0;
+    color: #333333;
+    font-size: 14px;
+    margin-left: 20px;
+    text-transform: capitalize;
+
+}
+
+.header .author::before{
+    content:"开发者: ";
+    display: inline-block;
+    color: #999;
+    margin-right: 10px;
+
+}
+
+.item-wrapper .footer {
+    font-size: 14px;
+}
+
+.footer .method {
+    width: 40px;
+    height: 24px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.footer .path{
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333333;
+}
+

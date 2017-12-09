@@ -1,28 +1,30 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
 }
 
-.logo-wrapper{
-
-}
-.logo-wrappe .logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.search-wrapper{
+  margin-top: 20px;
+  width: 100%;
+  height: 96px;
+  line-height: 96px;
+  text-align: center;
+  background: rgba(225, 225, 225, 0.8);
 }
 
 .search {
-  margin-top: 8%;
   width: 40%;
 }
 
 
-.App-title {
-  font-size: 1.5em;
+.api-list {
+  margin: 50px auto;
+  flex-grow: 1;
+  overflow-y: scroll;
 }
 
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.api-list::-webkit-scrollbar{
+  display: none;
 }
