@@ -23,8 +23,7 @@
   "proxy": {
     "/": {
       "target": "http://test.ysbang.cn",
-      "changeOrigin":true
-      
+      "changeOrigin": true
     }
   }
 }

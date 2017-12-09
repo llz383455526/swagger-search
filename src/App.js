@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Input, Button} from 'antd';
 import History from './history/History.js'
 import apiCenter from './apiCenter'
+import ApiList from './apiList/ApiList'
 import './App.css';
 
 const Search = Input.Search;
@@ -21,13 +22,7 @@ class App extends Component {
           size="large"
           type="primary"/>
         <History className="history" onHistorySelect={this.searchApi}></History>
-        <ul>
-        {
-          this.state.searchResult.map((apiInfo)=>{
-            return <li>{apiInfo.path}</li>
-          })
-        }
-        </ul>
+        <ApiList dataList={this.state.searchResult}></ApiList>
 
       </div>
     );
