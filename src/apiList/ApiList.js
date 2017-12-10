@@ -21,7 +21,7 @@ class ApiList extends Component {
         {   
             this.props.dataList.map((apiInfo,index)=>{
                 return (
-                    <ApiItem apiInfo={apiInfo} key={index}></ApiItem> 
+                    <ApiItem apiInfo={apiInfo} key={apiInfo.path}></ApiItem> 
                 )
             })
         }

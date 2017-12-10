@@ -24,6 +24,6 @@
     "/": {
       "target": "http://test.ysbang.cn",
       "changeOrigin": true
-    }
+    } 
   }
 }

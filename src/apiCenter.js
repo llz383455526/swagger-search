@@ -1,4 +1,4 @@
-import {projectUrls} from "./config"
+import config from "./config"
 const _ = require('lodash')
 const axios  = require('axios')
 
@@ -57,6 +57,7 @@ function projectApiAnalyze(data){
  */
 
 function collectApiInfo(projectUrls){
+    console.dir(projectUrls)
     projectUrls.forEach((projectUrl,key)=>{
         axios.get(projectUrl).then((response)=>{
             if(response.status!=200){
@@ -78,9 +79,10 @@ function searchApi(searchKey){
         projectApi.apiList.forEach((api)=>{
             //1、搜索关键词分词
             let cutkeys = searchKey.split(" ");
-        
+
             //2、关键词与作者和api名称匹配
             cutkeys.forEach((cutkey)=>{
+                if(cutkey.trim()=="") return;
                 if(api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
                     let findOne = api;
                     findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
@@ -91,15 +93,19 @@ function searchApi(searchKey){
             
         })
     })
-
-    return Object.values(results);
+    
+    var resultsArr = Object.values(results);
+    if(resultsArr.length===0){
+        console.log("根据关键字："+searchKey+",未匹配到结果");
+    }
+    return resultsArr;
 
 }
 
 
 
 
-collectApiInfo(projectUrls);
+collectApiInfo(config.getProjectUrls());
 const apiCenter={
     searchApi
 }
