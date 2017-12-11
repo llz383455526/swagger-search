@@ -1,4 +1,3 @@
-import config from "./config"
 const _ = require('lodash')
 const axios  = require('axios')
 
@@ -31,7 +30,8 @@ function projectApiAnalyze(data){
             method:'',
             author:"",
             operationId:"",     
-            summary:""
+            summary:"",
+            deprecated:false
         };
         apiItem.path = path;        //api 路径信息
     
@@ -40,6 +40,7 @@ function projectApiAnalyze(data){
 
         const pathInfo = pathData[apiItem.method];
         apiItem.author = pathInfo.tags[0] && pathInfo.tags[0];      //api开发者信息
+        apiItem.deprecated = pathInfo.deprecated;                   //api是否废弃
     
         apiItem.operationId = pathInfo.operationId;
         apiItem.apiName = apiItem.operationId.replace(new RegExp("Using"+apiItem.method,"ig"),"")   //api 名称
@@ -57,39 +58,44 @@ function projectApiAnalyze(data){
  */
 
 function collectApiInfo(projectUrls){
-    console.dir(projectUrls)
-    projectUrls.forEach((projectUrl,key)=>{
-        axios.get(projectUrl).then((response)=>{
+    return projectUrls.map((projectUrl,key)=>{
+        return axios.get(projectUrl).then((response)=>{
             if(response.status!=200){
-                alert("接口获取错误，请通知开发者修复");
+                alert("接口:"+projectUrl+"访问失败，请通知开发者修复");
                 return
             }
             let projectApiInfo = projectApiAnalyze(response.data);
             allProjectApiList.push(projectApiInfo);
           })
     })
-    
 }
 
 
 function searchApi(searchKey){
     let results={};
-
     allProjectApiList.forEach((projectApi)=>{
         projectApi.apiList.forEach((api)=>{
             //1、搜索关键词分词
             let cutkeys = searchKey.split(" ");
 
-            //2、关键词与作者和api名称匹配
+
+            //2、关键词与作者和api名称匹配，取交集
+            let isContain = true;
             cutkeys.forEach((cutkey)=>{
                 if(cutkey.trim()=="") return;
                 if(api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
-                    let findOne = api;
-                    findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
-                    let hash = findOne.jumpUrl;
-                    !results[hash] && (results[hash] = findOne);
+                   isContain = true & isContain;
+                }else{
+                    isContain = false & isContain;
                 }
             })
+
+            if(isContain){
+                let findOne = api;
+                findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
+                let hash = findOne.path;
+                !results[hash] && (results[hash] = findOne);
+            }
             
         })
     })
@@ -102,11 +108,8 @@ function searchApi(searchKey){
 
 }
 
-
-
-
-collectApiInfo(config.getProjectUrls());
 const apiCenter={
+    collectApiInfo,
     searchApi
 }
 

@@ -61,3 +61,32 @@
     color: #333333;
 }
 
+.footer .path.deprecated{
+    text-decoration: line-through;
+}
+
+.footer .deprecated-icon{
+    background: #fd5c02;
+    padding-right: 10px;
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    margin-left: 10px;
+    border-radius: 3px;
+    font-size: 14px;
+
+}
+
+.footer .deprecated-icon::before{
+    content:"";
+    display: inline-block;
+    border:5px solid transparent;
+    border-right: 8px solid #fd5c02;
+    position: relative;
+    right: 13px;
+
+
+
+}
+

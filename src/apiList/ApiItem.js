@@ -25,6 +25,21 @@ class ApiItem extends Component{
             backgroundColor:"#0f6ab4"
         }
 
+        const showDeprecated={
+            textDecoration:"line-through"
+        }
+
+        let pathBlock=null;
+        if(this.state.apiInfo.deprecated){
+            
+            pathBlock = <span><span className="path deprecated">{this.state.apiInfo.path}</span>
+             <span className="deprecated-icon">已废弃</span></span>
+              
+         }else{
+            pathBlock = <span className="path">{this.state.apiInfo.path}</span>
+         }
+
+
         return (
         <div className="item-wrapper" onClick={this.redictToOrigin}>
             <div className="header">
@@ -35,7 +50,10 @@ class ApiItem extends Component{
                 <span className="method" style={this.state.apiInfo.method.search(/GET/ig)!=-1?backgroundColorGet:backgroundColorPost}>
                 {this.state.apiInfo.method.toUpperCase()}
                 </span>
-                <span className="path">{this.state.apiInfo.path}</span>
+                {pathBlock}
+                
+                
+                
                 
             </div>
         </div>
