@@ -1,6 +1,15 @@
 药师帮ApiCenter
+ApiCenter是一款chrome插件，使用ReactJs编写，主要是为了解决目前内部API文档混乱，查找麻烦的问题。使用APICenter，您可以：
+1. 按开发者姓名搜索api相关信息
+1. 按api名称搜索API信息
+1. 同时使用开发者姓名和API关键字精确搜索API信息。
+1. 按需添加API信息源（开发中）
+1. 按需添加todoList
 
-### 使用方法：
+使用效果如下：
+![Markdown](http://i2.bvimg.com/608238/109b277e6390a9d0.png)
+
+### 推荐使用方法：
 > 前提：你得先装有nodejs以及npm
 - git clone
 - npm i

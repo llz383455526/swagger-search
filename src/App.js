@@ -61,9 +61,10 @@ class App extends Component {
               <li>
                 <a href="http://58.67.206.4:48080/" target="_blank">1、Java API文档目录</a>
               </li>
-              <li>todo</li>
-              <li>todo</li>
-              <li>todo</li>
+              <li>
+                <a href="http://test.ysbang.cn/api.php/admin/public/login?msg=%E6%93%8D%E4%BD%9C%E9%9C%80%E8%A6%81%E7%99%BB%E5%BD%95%E6%89%8D%E8%83%BD%E8%BF%9B%E8%A1%8C" target="_blank">2、管理后台（测试服）</a>
+              </li>
+              
             </ul>
           </div>
         </div>
