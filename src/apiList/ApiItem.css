@@ -36,6 +36,16 @@
 
 }
 
+.header .project-title{
+    margin-left: 20px;   
+}
+
+.header .project-title::before{
+    display: inline-block;
+    content:"所属模块：";
+    color:#999;
+}
+
 .header .author::before{
     content:"开发者: ";
     display: inline-block;

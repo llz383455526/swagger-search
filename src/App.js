@@ -5,6 +5,7 @@ import config from "./config"
 import apiCenter from './apiCenter'
 import ApiList from './apiList/ApiList'
 import './App.css';
+require("babel-polyfill");
 
 const Search = Input.Search;
 
@@ -13,16 +14,19 @@ class App extends Component {
     super(props);
     this.state = {
       searchResult: [],
-      initialDone: false
+      initialDone: false,
+      searchDone:false
     };
 
     //获取api信息
     Promise
-      .all(apiCenter.collectApiInfo(config.getProjectUrls()))
+      .race(apiCenter.collectApiInfo(config.getProjectUrls()))
       .then(() => {
         this.setState({initialDone: true});
         console.log("done");
         console.dir(this)
+      }).catch((e)=>{
+        
       })
   }
 
@@ -50,7 +54,7 @@ class App extends Component {
         </div>
 
         <div className="main-content">
-          <ApiList className="block list" dataList={this.state.searchResult}></ApiList>
+          <ApiList className="block list" dataList={this.state.searchResult} searchDone={this.state.searchDone}></ApiList>
           <div className="block nav">
             <h3
               style={{
@@ -78,8 +82,10 @@ class App extends Component {
     if (typeof key != "string") {
       key = key.target.value
     }
+    let results = apiCenter.searchApi(key.toLowerCase());
     this.setState({
-      searchResult: apiCenter.searchApi(key.toLowerCase())
+      searchResult: results,
+      searchDone:true
     })
   }
 

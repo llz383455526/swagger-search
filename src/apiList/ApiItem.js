@@ -45,6 +45,7 @@ class ApiItem extends Component{
             <div className="header">
                 <span className="summary">{this.state.apiInfo.summary}</span>
                 <span className="author">{this.state.apiInfo.author}</span>
+                <span className="project-title">{this.state.apiInfo.description}</span>
             </div>
             <div className="footer">
                 <span className="method" style={this.state.apiInfo.method.search(/GET/ig)!=-1?backgroundColorGet:backgroundColorPost}>

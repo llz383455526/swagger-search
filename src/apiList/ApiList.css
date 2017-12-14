@@ -2,3 +2,7 @@
     text-align: left;
 }
 
+.empty-tip {
+    padding: 25px;
+    color: coral;
+}

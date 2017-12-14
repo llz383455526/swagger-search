@@ -14,13 +14,15 @@ function projectApiAnalyze(data){
     //每个功能模块的api信息
     let _projectApiInfo={
         "description":"",       //项目描述
+        "title":"",             //所属模块
         "projectApiPageUrl":'',     //项目api文档页面地址
         "apiList":[]              //该项目下的所有api信息
 
 
     }
 
-    _projectApiInfo.description = data.info.description+data.info.title;
+    _projectApiInfo.description = data.info.description;
+    _projectApiInfo.title = data.info.title;
     _projectApiInfo.projectApiPageUrl = data.host+data.basePath+"/swagger-ui.html#!";
 
     _.forEach(data.paths,(pathData,path)=>{
@@ -93,6 +95,8 @@ function searchApi(searchKey){
             if(isContain){
                 let findOne = api;
                 findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
+                findOne.projectTitle= projectApi.title;
+                findOne.description= projectApi.description.split("：").length>1?projectApi.description.split("：")[1]:projectApi.description;
                 let hash = findOne.path;
                 !results[hash] && (results[hash] = findOne);
             }
