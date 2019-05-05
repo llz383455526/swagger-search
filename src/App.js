@@ -23,7 +23,6 @@ class App extends Component {
       .race(apiCenter.collectApiInfo(config.getProjectUrls()))
       .then(() => {
         this.setState({initialDone: true});
-        console.log("done");
         console.dir(this)
       }).catch((e)=>{
         
@@ -35,7 +34,7 @@ class App extends Component {
     let placeholder = "系统初始化中，请稍候...",
         disabled = true;
     if (this.state.initialDone) {
-      placeholder = "API名称/开发者姓名(pingyin)";
+      placeholder = "API名称/路径关键字";
       disabled = false;
     }
     return (
@@ -79,7 +78,7 @@ class App extends Component {
   }
 
   searchApi = (key) => {
-    if (typeof key != "string") {
+    if (typeof key !== "string") {
       key = key.target.value
     }
     let results = apiCenter.searchApi(key.toLowerCase());

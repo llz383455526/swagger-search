@@ -16,16 +16,15 @@ class ApiList extends Component {
 
    
     render(){
-
         let content=null;
-        if(this.props.dataList.length>1){
+        if(this.props.dataList.length >= 1){
             content = this.props.dataList.map((apiInfo,index)=>{
                 return (
                     <ApiItem apiInfo={apiInfo} key={apiInfo.path}></ApiItem> 
                 )
             })
         }else if(this.props.searchDone){
-            content = <div className="empty-tip"><Icon type="exclamation-circle-o"/>  未找到符合条件的API信息，该API可能位于word文档中</div>;
+            content = <div className="empty-tip"><Icon type="exclamation-circle-o"/>  未找到符合条件的API信息，该API可能位于其它文档中</div>;
 
         }
 

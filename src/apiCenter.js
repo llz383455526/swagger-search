@@ -17,15 +17,14 @@ function projectApiAnalyze(data){
         "title":"",             //所属模块
         "projectApiPageUrl":'',     //项目api文档页面地址
         "apiList":[]              //该项目下的所有api信息
-
-
     }
 
     _projectApiInfo.description = data.info.description;
     _projectApiInfo.title = data.info.title;
-    _projectApiInfo.projectApiPageUrl = data.host+data.basePath+"/swagger-ui.html#!";
+    _projectApiInfo.projectApiPageUrl = data.host+"/swagger-ui.html#!";
 
     _.forEach(data.paths,(pathData,path)=>{
+
         let apiItem={
             apiName:"",
             path:"",
@@ -41,11 +40,12 @@ function projectApiAnalyze(data){
 
 
         const pathInfo = pathData[apiItem.method];
-        apiItem.author = pathInfo.tags[0] && pathInfo.tags[0];      //api开发者信息
-        apiItem.deprecated = pathInfo.deprecated;                   //api是否废弃
+        apiItem.author = pathInfo.tags.length > 0 && pathInfo.tags[pathInfo.tags.length -1];      //api开发者信息,ayg 未提供
+        apiItem.deprecated = pathInfo.deprecated || false;                   //api是否废弃
     
         apiItem.operationId = pathInfo.operationId;
-        apiItem.apiName = apiItem.operationId.replace(new RegExp("Using"+apiItem.method,"ig"),"")   //api 名称
+        // apiItem.apiName = apiItem.operationId.replace(new RegExp("Using"+apiItem.method,"ig"),"")   //api 名称
+        apiItem.apiName = apiItem.path.split('/').join('_');
         apiItem.summary = pathInfo.summary;     //api 功能描述
         _projectApiInfo.apiList.push(apiItem)
     })
@@ -62,17 +62,22 @@ function projectApiAnalyze(data){
 function collectApiInfo(projectUrls){
     return projectUrls.map((projectUrl,key)=>{
         return axios.get(projectUrl).then((response)=>{
-            if(response.status!=200){
+            if(response.status !== 200){
                 alert("接口:"+projectUrl+"访问失败，请通知开发者修复");
                 return
             }
             let projectApiInfo = projectApiAnalyze(response.data);
             allProjectApiList.push(projectApiInfo);
+            console.log(allProjectApiList)
           })
     })
 }
 
 
+/**
+ * 根据关键字搜索 api
+ * @param {string} searchKey 
+ */
 function searchApi(searchKey){
     let results={};
     allProjectApiList.forEach((projectApi)=>{
@@ -81,14 +86,16 @@ function searchApi(searchKey){
             let cutkeys = searchKey.split(" ");
 
 
-            //2、关键词与作者和api名称匹配，取交集
-            let isContain = true;
+            //2、关键词与作者和api名称匹配，取并集
+            let isContain = false;
             cutkeys.forEach((cutkey)=>{
-                if(cutkey.trim()=="") return;
-                if(api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
-                   isContain = true & isContain;
+                if(cutkey.trim() === "") return;
+                if(api.path.toLowerCase().includes(cutkey) || api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
+                    console.log('api true', api)
+                   isContain = true || isContain;
                 }else{
-                    isContain = false & isContain;
+                    console.log('api false', api)
+                    isContain = false || isContain;
                 }
             })
 
@@ -108,6 +115,7 @@ function searchApi(searchKey){
     if(resultsArr.length===0){
         console.log("根据关键字："+searchKey+",未匹配到结果");
     }
+    console.log(resultsArr);
     return resultsArr;
 
 }

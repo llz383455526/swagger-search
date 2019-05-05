@@ -1,22 +1,7 @@
-//"/ysb/v2/api-docs",
-let projectUrlTags=[
-    "caigou-api",               //采购精灵服务
-    "commons-api",              //通用接口
-    "credit-pay",               //白条模块
-    "drug-knowledge",           //药知识
-    "file-service",              //文件服务
-    "intelli-purchase",         //智能采购
-    "online-pharmacy",          //网上药店
-    "order-ysb",                //order服务
-    "pharm-study",              //药学习
-   
-    "scm-api",                  //特推/商业
-    "special-topic",            //专题
-    "store-manager",            //掌店宝
-    "ysb",                      //药师帮采购--店员版
-    "ysb-user",                 //user-service  
-    "ysb-weixin-mp",            //weixi
-    "we-globuy"                //全球购微店  
+
+let projectUrlArr=[
+    "http://192.168.1.94:11851/v2/api-docs?group=ayg",               //采购精灵服务  
+    "http://192.168.1.94:11831/v2/api-docs?group=ayg",               //采购精灵服务  
 ]
 
 /**
@@ -25,10 +10,10 @@ let projectUrlTags=[
  */
 function addProjectUrl(urlStr){
     let urlArr = urlStr.toLowerCase().split(",");
-    const projectUrlTagStr = projectUrlTags.join(" ");
+    const projectUrlTagStr = projectUrlArr.join(" ");
     urlArr.array.forEach(element => {
         if(!projectUrlTagStr.includes(element)){
-            projectUrlTags.push(element);
+            projectUrlArr.push(element);
         }
     });
 
@@ -36,14 +21,7 @@ function addProjectUrl(urlStr){
 }
 
 function getProjectUrls(){
-    let prefix="";
-    let debug = false;
-    if(!debug){
-        prefix="http://test.ysbang.cn"
-    }
-    return projectUrlTags.map((projectUrlTag)=>{
-        return prefix+"/"+projectUrlTag+"/v2/api-docs"
-    })
+    return projectUrlArr
 }
 export default {
     addProjectUrl,
