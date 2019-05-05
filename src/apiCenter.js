@@ -41,10 +41,10 @@ function projectApiAnalyze(data){
 
 
         const pathInfo = pathData[apiItem.method];
-        apiItem.author = pathInfo.tags[0] && pathInfo.tags[0];      //api开发者信息
-        apiItem.deprecated = pathInfo.deprecated;                   //api是否废弃
+        apiItem.author = pathInfo.tags.length > 0 ? pathInfo.tags[0] : '';      //api开发者信息
+        apiItem.deprecated = pathInfo.deprecated || false;                   //api是否废弃
     
-        apiItem.operationId = pathInfo.operationId;
+        apiItem.operationId = pathInfo.operationId || '';
         apiItem.apiName = apiItem.operationId.replace(new RegExp("Using"+apiItem.method,"ig"),"")   //api 名称
         apiItem.summary = pathInfo.summary;     //api 功能描述
         _projectApiInfo.apiList.push(apiItem)
@@ -74,7 +74,7 @@ function collectApiInfo(projectUrls){
 
 
 function searchApi(searchKey){
-    let results={};
+    let results = {};
     allProjectApiList.forEach((projectApi)=>{
         projectApi.apiList.forEach((api)=>{
             //1、搜索关键词分词
@@ -94,7 +94,12 @@ function searchApi(searchKey){
 
             if(isContain){
                 let findOne = api;
-                findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
+                if (api.operationId) {
+                    findOne.jumpUrl = "http://" + projectApi.projectApiPageUrl + "/" + api.author + "/" + api.operationId;
+                } else {
+                    findOne.jumpUrl = "http://" + projectApi.projectApiPageUrl + "/" + api.author + "/" + api.method + '_' + api.path;
+                }
+                
                 findOne.projectTitle= projectApi.title;
                 findOne.description= projectApi.description.split("：").length>1?projectApi.description.split("：")[1]:projectApi.description;
                 let hash = findOne.path;
