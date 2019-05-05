@@ -1,5 +1,4 @@
 import React,{Component} from "react"
-import ReactDom from 'react-dom'
 import './ApiItem.css'
 
 
@@ -25,10 +24,6 @@ class ApiItem extends Component{
             backgroundColor:"#0f6ab4"
         }
 
-        const showDeprecated={
-            textDecoration:"line-through"
-        }
-
         let pathBlock=null;
         if(this.state.apiInfo.deprecated){
             
@@ -48,14 +43,10 @@ class ApiItem extends Component{
                 <span className="project-title">{this.state.apiInfo.description}</span>
             </div>
             <div className="footer">
-                <span className="method" style={this.state.apiInfo.method.search(/GET/ig)!=-1?backgroundColorGet:backgroundColorPost}>
+                <span className="method" style={this.state.apiInfo.method.search(/GET/ig) !== -1?backgroundColorGet:backgroundColorPost}>
                 {this.state.apiInfo.method.toUpperCase()}
                 </span>
                 {pathBlock}
-                
-                
-                
-                
             </div>
         </div>
         )
