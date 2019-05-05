@@ -17,7 +17,7 @@ class ApiList extends Component {
    
     render(){
         let content=null;
-        if(this.props.dataList.length >= 1){
+        if(this.props.dataList.length > 0){
             content = this.props.dataList.map((apiInfo,index)=>{
                 return (
                     <ApiItem apiInfo={apiInfo} key={apiInfo.path}></ApiItem> 

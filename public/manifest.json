@@ -5,10 +5,9 @@
   },
   "browser_action": {
       "default_icon": "images/logo.png",
-      "default_title": "合摩科技API中心"
-  
+      "default_title": "API中心"
   },
-  "description": "合摩科技API中心",
+  "description": "API中心",
   "icons": {
       "128": "images/logo.png",
       "16": "images/logo.png",
@@ -16,7 +15,7 @@
   },
   "manifest_version": 2,
   "name": "api center",
-  "permissions": [ "notifications", "unlimitedStorage", "downloads", "storage", "contextMenus", "tabs", "*://test.ysbang.cn/*", "*://unpkg.com/*","webRequest", "webRequestBlocking", "http://192.168.1.94:11851/*", "http://192.168.1.94:11831/*"],
-  "version": "2.0.0",
+  "permissions": [ "notifications", "unlimitedStorage", "downloads", "storage", "contextMenus", "tabs", "*://unpkg.com/*","webRequest", "webRequestBlocking", "http://192.168.1.94:11851/*", "http://192.168.1.94:11831/*"],
+  "version": "3.0.0",
   "web_accessible_resources": [ "images/*" ]
 }

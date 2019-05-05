@@ -79,7 +79,7 @@ function collectApiInfo(projectUrls){
  * @param {string} searchKey 
  */
 function searchApi(searchKey){
-    let results={};
+    let results = {};
     allProjectApiList.forEach((projectApi)=>{
         projectApi.apiList.forEach((api)=>{
             //1、搜索关键词分词
@@ -101,7 +101,12 @@ function searchApi(searchKey){
 
             if(isContain){
                 let findOne = api;
-                findOne.jumpUrl = "http://"+projectApi.projectApiPageUrl+"/"+api.author+"/"+api.operationId;
+                if (api.operationId) {
+                    findOne.jumpUrl = "http://" + projectApi.projectApiPageUrl + "/" + api.author + "/" + api.operationId;
+                } else {
+                    findOne.jumpUrl = "http://" + projectApi.projectApiPageUrl + "/" + api.author + "/" + api.method + '_' + api.path;
+                }
+                
                 findOne.projectTitle= projectApi.title;
                 findOne.description= projectApi.description.split("：").length>1?projectApi.description.split("：")[1]:projectApi.description;
                 let hash = findOne.path;
