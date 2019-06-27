@@ -1,5 +1,5 @@
 最近供职的两家公司都是利用swagger创建api 文档，都存在文档分散，检索困难的问题。这个项目的开发目的就是为了解决这些问题。
-ApiCenter是一款chrome插件，使用ReactJs编写，主要是为了解决目前内部API文档太多，查找麻烦的问题。使用APICenter，您可以：
+swagger-search 项目主要目的是开发一款chrome扩展，解决目前swagger API文档太多，查找麻烦的问题。项目使用React.js编写，swaggerSearch扩展为您带来以下功能：
 1. 按开发者/API 名称/模块名称等关键字搜索API相关信息(done)
 1. 支持跨系统搜索并自动定位到目标 API，支持添加自定义swagger源
 1. 自动屏蔽 swagger 页面顶部的大片错误信息（我们公司内部会出现）
@@ -19,7 +19,7 @@ ApiCenter是一款chrome插件，使用ReactJs编写，主要是为了解决目�
 
 
 ### 您也可以：
-1. 您可以直接下载apiCenter.zip文件。解压后，通过扩展程序加载文件。
+1. 您可以直接下载 swaggerSearch.zip文件。解压后，通过扩展程序加载文件。
 
 
 ## 版本历史
