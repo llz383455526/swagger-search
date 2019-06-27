@@ -1,0 +1,22 @@
+.content-script-search-wrapper {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 80%;
+  height: 48px;
+  display: flex;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+}
+.content-script-search {
+  width: 100%;
+  height: 100%;
+  background-color: #fc5c6c;
+  color: white;
+  font-size: 16px;
+}
+.content-script-search-result {
+  border: 1px solid #fc5c6c;
+}

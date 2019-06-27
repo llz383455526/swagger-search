@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.url-list-item {
+  padding: 5px;
+  display: flex;
+  flex-flow: column;
+}
+.url-list-title {
+  /* background-color: aquamarine; */
+  margin-right: 5px;
+}

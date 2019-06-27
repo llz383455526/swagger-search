@@ -13,9 +13,17 @@
       "16": "images/logo.png",
       "48": "images/logo.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["http://*/swagger-ui.html"],
+      "css": ["css/mystyle.css"],
+      "js": ["js/contentScript.js"]
+    }
+  ],
   "manifest_version": 2,
   "name": "api center",
-  "permissions": [ "notifications", "unlimitedStorage", "downloads", "storage", "contextMenus", "tabs", "*://unpkg.com/*","webRequest", "webRequestBlocking", "http://192.168.1.94:11851/*", "http://192.168.1.94:11831/*"],
-  "version": "3.0.0",
-  "web_accessible_resources": [ "images/*" ]
+  "permissions": [ "notifications", "unlimitedStorage", "downloads", "storage", "contextMenus", "tabs","webRequest", "webRequestBlocking", "http://*/","https://*/"],
+  "version": "4.0.0",
+  "web_accessible_resources": [ "images/*" ],
+  "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='"
 }

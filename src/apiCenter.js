@@ -11,6 +11,9 @@ let allProjectApiList=[];   //存储所有项目的api信息
  * @return 整理后的项目api信息
  */
 function projectApiAnalyze(data){
+    if (!data.info) {
+        return
+    }
     //每个功能模块的api信息
     let _projectApiInfo={
         "description":"",       //项目描述
@@ -67,8 +70,7 @@ function collectApiInfo(projectUrls){
                 return
             }
             let projectApiInfo = projectApiAnalyze(response.data);
-            allProjectApiList.push(projectApiInfo);
-            console.log(allProjectApiList)
+            projectApiInfo && allProjectApiList.push(projectApiInfo);
           })
     })
 }
@@ -91,10 +93,8 @@ function searchApi(searchKey){
             cutkeys.forEach((cutkey)=>{
                 if(cutkey.trim() === "") return;
                 if(api.path.toLowerCase().includes(cutkey) || api.author.toLowerCase().includes(cutkey) || api.operationId.toLowerCase().includes(cutkey) ){
-                    console.log('api true', api)
                    isContain = true || isContain;
                 }else{
-                    console.log('api false', api)
                     isContain = false || isContain;
                 }
             })
@@ -120,7 +120,6 @@ function searchApi(searchKey){
     if(resultsArr.length===0){
         console.log("根据关键字："+searchKey+",未匹配到结果");
     }
-    console.log(resultsArr);
     return resultsArr;
 
 }

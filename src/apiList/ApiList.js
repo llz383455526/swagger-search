@@ -2,18 +2,10 @@ import React,{Component} from "react"
 import {Icon} from 'antd';
 import './ApiList.css'
 import ApiItem from './ApiItem'
-
-
-
-
 class ApiList extends Component {
     constructor(props){
         super(props);
-        console.log(props)
     }
-
-
-   
     render(){
         let content=null;
         if(this.props.dataList.length > 0){
@@ -32,8 +24,6 @@ class ApiList extends Component {
                 {content}
             </div>
         )
-           
-    
     }
 }
 
