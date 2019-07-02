@@ -2,10 +2,10 @@
 swaggerSearch 项目主要目的是开发一款chrome扩展，解决目前swagger API文档太多，查找麻烦的问题。项目使用React.js编写，swaggerSearch扩展为您带来以下功能：
 1. 按开发者/API 名称/模块名称等关键字搜索API相关信息
 1. 支持跨系统搜索并自动定位到目标 API，支持添加自定义swagger源
-    效果见动图：![Markdown](https://github.com/llz383455526/api-center/blob/master/ search.gif?raw=true)
-1. 自动屏蔽 swagger 页面顶部的大片错误信息（我们公司内部会出现）
+    效果见动图：![Markdown](https://github.com/llz383455526/swagger-search/blob/master/search.gif)
+1. 自动屏蔽 swagger 页面顶部的错误信息
 1. 自动展开swagger页面API列表，支持利用自带搜索在当前页面进行检索
-    效果见动图：![Markdown](https://github.com/llz383455526/api-center/blob/master/ search2.gif?raw=true)
+    效果见动图：![Markdown](https://github.com/llz383455526/swagger-search/blob/master/search2.gif)
 
 **注意：**该扩展对后端代码无侵入，但对 swagger 版本有依赖，目前在swagger v2 版本中测试通过！
 
