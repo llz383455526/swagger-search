@@ -95,7 +95,6 @@ class App extends Component {
     return (
       <div className="App">
         <div className="search-wrapper">
-          <img src="images/api_logo.png" className="logo"/>
           <Search
             placeholder={placeholder}
             disabled={disabled}

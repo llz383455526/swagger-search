@@ -1,6 +1,6 @@
 {
-  "name": "ysb-api-center",
-  "version": "4.0.0",
+  "name": "swagger-search",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "antd": "^3.19.8",

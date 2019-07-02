@@ -15,7 +15,7 @@ class ApiList extends Component {
                 )
             })
         }else if(this.props.searchDone){
-            content = <div className="empty-tip"><Icon type="exclamation-circle-o"/>  未找到符合条件的API信息，该API可能位于其它文档中</div>;
+            content = <div className="empty-tip"><Icon type="exclamation-circle-o"/>  未找到符合条件的API信息，该API可能位于其它项目中，请添加对应API源后再搜索</div>;
 
         }
 
