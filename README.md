@@ -1,5 +1,5 @@
-最近供职的两家公司都是利用swagger创建api 文档，都存在文档分散，检索困难的问题。这个项目的开发目的就是为了解决这些问题。
-swaggerSearch 项目主要目的是开发一款chrome扩展，解决目前swagger API文档太多，查找麻烦的问题。项目使用React.js编写，swaggerSearch扩展为您带来以下功能：
+最近供职的两家公司都是利用swagger创建api 文档，都存在文档分散，检索困难的问题。这
+swaggerSearch 是一款chrome扩展，解决基于swagger创建的 API文档太多且比较分散带来的查找麻烦的问题。项目使用React.js编写，swaggerSearch扩展为您带来以下功能：
 1. 按开发者/API 名称/模块名称等关键字搜索API相关信息
 1. 支持跨系统搜索并自动定位到目标 API，支持添加自定义swagger源
     效果见动图：![Markdown](https://github.com/llz383455526/swagger-search/blob/master/search.gif)
